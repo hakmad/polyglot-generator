@@ -16,8 +16,6 @@ class File:
     Designed to be extended to other formats.
 
     Attributes:
-        name (str): name of the file.
-        formats (str): format of the file.
         data (bytes): data of the file.
         size (int): size (in bytes) of the file.
 
@@ -31,21 +29,14 @@ class File:
         max_parasite_size (int): maximum size for a parasite.
     """
 
-    def __init__(self, name, format):
+    def __init__(self, data):
         """Create a new File object.
 
         Args:
-            name (str): name of the file.
-            format (str): format of the file.
+            data (bytes): byte string containing contents of the file.
         """
-        # Metadata.
-        self.name = name
-        self.format = format
-
         # Actual data.
-        with open(self.name, "rb") as file:
-            self.data = file.read()
-
+        self.data = data
         self.size = len(self.data)
 
         # Stack options.

@@ -46,11 +46,12 @@ class File(formats.File):
 
     Extends formats.File.
     """
-    def __init__(self, name):
+
+    def __init__(self, data):
         """Create a new ZIP File object.
 
         Args:
-            name (str): name of the ZIP file.
+            data (bytes): byte string containing the contents of the file.
         """
         # Initialise the underlying File.
         formats.File.__init__(self, name, "zip")

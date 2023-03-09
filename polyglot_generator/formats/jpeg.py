@@ -56,14 +56,15 @@ class File(formats.File):
 
     Extends formats.File.
     """
-    def __init__(self, name):
+
+    def __init__(self, data):
         """Create a new JPEG file object.
 
         Args:
-            name (str): name of the JPEG file.
+            data (bytes): byte string containing the contents of the file.
         """
         # Initialise the underlying File.
-        formats.File.__init__(self, name, "jpeg")
+        formats.File.__init__(self, data)
 
         # Stack options.
         self.supports_stack_after_eof = True
