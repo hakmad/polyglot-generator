@@ -54,7 +54,7 @@ class File(formats.File):
             data (bytes): byte string containing the contents of the file.
         """
         # Initialise the underlying File.
-        formats.File.__init__(self, name, "zip")
+        formats.File.__init__(self, data)
 
         # Stack options.
         self.supports_stack_before_sof = True
