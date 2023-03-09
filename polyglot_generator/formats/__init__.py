@@ -5,6 +5,7 @@ formats.
 """
 
 __all__ = [
+    "jpeg",
     "zip",
 ]
 
