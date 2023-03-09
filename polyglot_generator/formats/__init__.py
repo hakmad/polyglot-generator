@@ -4,7 +4,9 @@ This module contains a template File class that can be extended for different
 formats.
 """
 
-__all__ = []
+__all__ = [
+    "zip",
+]
 
 
 class File:
