@@ -7,6 +7,7 @@ formats.
 __all__ = [
     "gif",
     "jpeg",
+    "png",
     "zip",
 ]
 

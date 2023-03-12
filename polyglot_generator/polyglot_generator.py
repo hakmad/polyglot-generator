@@ -68,6 +68,7 @@ def write_to_file(file_name, data):
 available_formats = {
     "gif": gif.File,
     "jpeg": jpeg.File,
+    "png": png.File,
     "zip": zip.File,
 }
 
