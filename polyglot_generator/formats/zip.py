@@ -48,7 +48,7 @@ class File(formats.File):
     """
 
     def __init__(self, data):
-        """Create a new ZIP File object.
+        """Create a new ZIP file object.
 
         Args:
             data (bytes): byte string containing the contents of the file.
