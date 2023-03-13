@@ -84,7 +84,7 @@ class File(formats.File):
         self.max_parasite_size = 0xFFFFFFFF
 
     def host_parasite(self, parasite):
-        """Host a parasite in the current file.
+        """Host some parasite data in the current file.
 
         Parasites are hosted by inserting a comment right after the PNG IHDR
         chunk.
@@ -104,7 +104,7 @@ class File(formats.File):
         polyglot += b"cOMM" 
 
         # Actual parasite data.
-        polyglot += parasite.data
+        polyglot += parasite
 
         # PNG CRC checksum.
         polyglot += binascii.crc32(b"cOMM" + parasite.data).to_bytes(4, "big")

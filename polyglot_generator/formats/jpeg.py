@@ -74,13 +74,13 @@ class File(formats.File):
         self.max_parasite_size = 0xFFFF - 2
 
     def host_parasite(self, parasite):
-        """Host a parasite in the current file.
+        """Host some parasite data in the current file.
 
         Parasites are hosted by inserting a comment right after the JPEG SOI
         marker.
 
         Args:
-            parasite (File): the parasite file to host within the current file.
+            parasite (bytes): the parasite file to host within the current file.
         """
         polyglot = b""
 
@@ -92,7 +92,7 @@ class File(formats.File):
         polyglot += (parasite.size + 2).to_bytes(2, "big")
 
         # Actual parasite data.
-        polyglot += parasite.data
+        polyglot += parasite 
 
         # Rest of host data.
         polyglot += self.data[2:]

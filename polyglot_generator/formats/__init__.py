@@ -4,6 +4,7 @@ This module contains a template File class that can be extended for different
 formats.
 """
 
+
 __all__ = [
     "gif",
     "jpeg",
@@ -50,7 +51,7 @@ class File:
         self.max_parasite_size = 0
 
     def host_parasite(self, parasite):
-        """Host a parasite in the current file.
+        """Host some parasite data in the current file.
 
         This method is intended to be called from the host file.
 
@@ -58,12 +59,12 @@ class File:
         this format (given that the format supports creating parasites).
 
         Args:
-            parasite (File): the parasite file to host within the current file.
+            parasite (bytes): the parasite file to host within the current file.
 
         Examples:
             host = File(...)
             parasite = File(...)
             ...
-            polyglot = host.host_parasite(parasite)
+            polyglot = host.host_parasite(parasite.data)
         """
         pass
