@@ -90,7 +90,7 @@ class File(formats.File):
         chunk.
 
         Args:
-            parasite (File): the parasite file to host within the current file.
+            parasite (bytes): the parasite file to host within the current file.
         """
         polyglot = b""
 
@@ -98,7 +98,7 @@ class File(formats.File):
         polyglot += self.data[:33]
 
         # Parasite size.
-        polyglot += (parasite.size).to_bytes(4, "big")
+        polyglot += (len(parasite)).to_bytes(4, "big")
 
         # PNG comment marker.
         polyglot += b"cOMM" 
@@ -107,7 +107,7 @@ class File(formats.File):
         polyglot += parasite
 
         # PNG CRC checksum.
-        polyglot += binascii.crc32(b"cOMM" + parasite.data).to_bytes(4, "big")
+        polyglot += binascii.crc32(b"cOMM" + parasite).to_bytes(4, "big")
 
         # Rest of host data.
         polyglot += self.data[33:]

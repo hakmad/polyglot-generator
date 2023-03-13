@@ -89,7 +89,7 @@ class File(formats.File):
 
         # JPEG comment marker with parasite length.
         polyglot += b"\xFF\xFE"
-        polyglot += (parasite.size + 2).to_bytes(2, "big")
+        polyglot += (len(parasite) + 2).to_bytes(2, "big")
 
         # Actual parasite data.
         polyglot += parasite 
