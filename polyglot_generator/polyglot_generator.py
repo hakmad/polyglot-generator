@@ -50,7 +50,7 @@ def create_parasite(host, parasite):
     if not parasite.size < host.max_parasite_size:
         raise ParasiteNotViableException(f"Parasite file exceeds max parasite size for host format!")
 
-    return host.host_parasite(parasite)
+    return host.host_parasite(parasite.data)
 
 
 def write_to_file(file_name, data):
