@@ -66,7 +66,9 @@ def write_to_file(file_name, data):
 
 
 available_formats = {
+    "7z": _7z.File,
     "bzip2": bzip2.File,
+    "elf": elf.File,
     "gif": gif.File,
     "gzip": gzip.File,
     "jpeg": jpeg.File,

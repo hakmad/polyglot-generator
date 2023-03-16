@@ -6,7 +6,9 @@ formats.
 
 
 __all__ = [
+    "_7z",
     "bzip2",
+    "elf",
     "gif",
     "gzip",
     "jpeg",
