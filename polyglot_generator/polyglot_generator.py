@@ -66,6 +66,11 @@ def write_to_file(file_name, data):
 
 
 available_formats = {
+    # Generic formats.
+    "top": stack_top.File,
+    "bottom": stack_bottom.File,
+
+    # Specific formats.
     "7z": _7z.File,
     "bzip2": bzip2.File,
     "elf": elf.File,
