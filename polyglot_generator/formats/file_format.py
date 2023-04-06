@@ -1,10 +1,10 @@
 """File module.
 
-This module contains a template File class that can be extended for different
-formats.
+This module contains a template FileFormat class that can be extended for
+different formats.
 """
 
-class File:
+class FileFormat:
     """Container class for other formats.
 
     Designed to be extended to other formats.
@@ -24,7 +24,7 @@ class File:
     """
 
     def __init__(self, data):
-        """Create a new File object.
+        """Create a new FileFormat object.
 
         Args:
             data (bytes): byte string containing contents of the file.

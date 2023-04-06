@@ -17,13 +17,13 @@ As a stack:
 """
 
 
-from polyglot_generator.formats import file
+from formats import file_format
 
 
-class File(file.File):
+class File(file_format.FileFormat):
     """Container for GZIP files.
 
-    Extends file.File.
+    Extends file_format.FileFormat.
     """
 
     def __init__(self, data):
@@ -32,8 +32,8 @@ class File(file.File):
         Args:
             data (bytes): byte string containing the contents of the file.
         """
-        # Initialise the underlying File.
-        file.File.__init__(self, data)
+        # Initialise the underlying FileFormat.
+        file_format.FileFormat.__init__(self, data)
 
         # Stack options.
         self.supports_stack_after_eof = True
