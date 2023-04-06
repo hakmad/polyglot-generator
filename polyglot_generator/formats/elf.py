@@ -1,35 +1,31 @@
-"""GIF format.
+"""ELF format.
 
-(Most) GIF implementations do not parse beyond the image/file terminator marker (00
-3B in big endian format). Data placed after this marker is ignored by the GIF
-parser and as a result GIF can be used as the top half of a stack file. 
+The ELF format uses offsets to specify where different segments and sections
+start. Data placed after all sections and segments in the ELF file is not
+interpreted by the interpreter, and as a result ELF can be used as the top half
+of a stack file.
 
 As a stack:
 
 +-----------------+
 |                 |
-|   GIF file      |   <-- Prepended to the start of the bottom file.
+|   ELF file      |   <-- Prepended to the start of the bottom file.
 |                 |
 +-----------------+
 |                 |
 |   Bottom file   |
 |                 |
 +-----------------+
-
-GIF89a contains a mechanism for creating comments, however these are limited to
-255 bytes in length. The GIF file format also expects the file header to be at
-offset 0, and as a result parasite based polyglots are generally not possible
-(except for very small files with GIF as the host).
 """
 
 
-import formats
+from polyglot_generator.formats import file
 
 
-class File(formats.File):
+class File(file.File):
     """Container for GIF files.
 
-    Extends formats.File.
+    Extends file.File.
     """
 
     def __init__(self, data):
@@ -39,7 +35,7 @@ class File(formats.File):
             data (bytes): byte string containing the contents of the file.
         """
         # Initialise the underlying File.
-        formats.File.__init__(self, data)
+        file.File.__init__(self, data)
 
         # Stack options.
         self.supports_stack_after_eof = True

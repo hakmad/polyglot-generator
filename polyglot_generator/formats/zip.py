@@ -38,13 +38,13 @@ Care should be taken to ensure that the ZIP file actually fits into the
 comment/ignored section of a host - large ZIP files may not work.
 """
 
-import formats
+from polyglot_generator.formats import file
 
 
-class File(formats.File):
+class File(file.File):
     """Container for ZIP files.
 
-    Extends formats.File.
+    Extends file.File.
     """
 
     def __init__(self, data):
@@ -54,7 +54,7 @@ class File(formats.File):
             data (bytes): byte string containing the contents of the file.
         """
         # Initialise the underlying File.
-        formats.File.__init__(self, data)
+        file.File.__init__(self, data)
 
         # Stack options.
         self.supports_stack_before_sof = True
