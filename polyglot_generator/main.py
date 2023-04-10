@@ -47,6 +47,9 @@ def create_parasite(host, parasite):
     if not host.supports_parasite:
         raise ParasiteNotViableException(f"Host file does not support parasites!")
 
+    if not parasite.supports_stack_before_sof:
+        raise ParasiteNotViableException("Parasite file does not support data before SOF!")
+
     if not parasite.size < host.max_parasite_size:
         raise ParasiteNotViableException(f"Parasite file exceeds max parasite size for host format!")
 
