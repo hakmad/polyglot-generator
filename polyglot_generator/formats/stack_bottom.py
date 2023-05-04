@@ -11,7 +11,7 @@ As a stack:
 |                 |
 +-----------------+
 |                 |
-|   Bottom file   |   <-- Appended to the end of the top file.
+|   Bottom file   |   <--- Appended to the end of the top file.
 |                 |
 +-----------------+
 """

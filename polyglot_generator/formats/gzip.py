@@ -7,7 +7,7 @@ As a stack:
 
 +-----------------+
 |                 |
-|   GZIP file     |   <-- Prepended to the start of the bottom file.
+|   GZIP file     |   <--- Prepended to the start of the bottom file.
 |                 |
 +-----------------+
 |                 |

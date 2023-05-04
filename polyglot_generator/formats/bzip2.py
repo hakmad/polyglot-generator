@@ -7,7 +7,7 @@ As a stack:
 
 +-----------------+
 |                 |
-|   BZIP2 file    |   <-- Prepended to the start of the bottom file.
+|   BZIP2 file    |   <--- Prepended to the start of the bottom file.
 |                 |
 +-----------------+
 |                 |

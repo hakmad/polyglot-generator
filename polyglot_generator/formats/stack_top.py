@@ -7,7 +7,7 @@ As a stack:
 
 +-----------------+
 |                 |
-|   Top file      |   <-- Prepended to the start of the bottom file.
+|   Top file      |   <--- Prepended to the start of the bottom file.
 |                 |
 +-----------------+
 |                 |

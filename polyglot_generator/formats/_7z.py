@@ -14,7 +14,7 @@ As a stack:
 |               |
 +---------------+
 |               |
-|   7ZIP file   |   <-- Appended to the end of the top file.
+|   7ZIP file   |   <--- Appended to the end of the top file.
 |               |
 +---------------+
 
@@ -26,7 +26,7 @@ As a parasite:
 |               |
 +---------------+
 |               |
-|   7ZIP file   |   <-- As a comment/ignored section within the host file.
+|   7ZIP file   |   <--- As a comment/ignored section within the host file.
 |               |
 +---------------+
 |               |

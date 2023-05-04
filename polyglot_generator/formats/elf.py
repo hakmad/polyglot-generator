@@ -9,7 +9,7 @@ As a stack:
 
 +-----------------+
 |                 |
-|   ELF file      |   <-- Prepended to the start of the bottom file.
+|   ELF file      |   <--- Prepended to the start of the bottom file.
 |                 |
 +-----------------+
 |                 |

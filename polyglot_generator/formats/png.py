@@ -11,7 +11,7 @@ As a stack:
 
 +-----------------+
 |                 |
-|   PNG file      |   <-- Prepended to the top of the bottom file.
+|   PNG file      |   <--- Prepended to the top of the bottom file.
 |                 |
 +-----------------+
 |                 |
@@ -23,11 +23,7 @@ As a host:
 
 +------------------------------+
 |                              |
-|   PNG header marker          |   <--+
-|                              |      |
-+------------------------------+      |-- PNG header section.
-|                              |      |
-|   PNG IHDR chunk             |   <--+
+|   Start of PNG file          |   <--- Actual PNG data.
 |                              | 
 +------------------------------+
 |                              |
@@ -37,7 +33,7 @@ As a host:
 |                              |      |
 |   PNG comment chunk marker   |   <--+
 |                              |      |
-+------------------------------+      |-- Parasite section.
++------------------------------+      |-- PNG comment chunk containing parasite.
 |                              |      |
 |   Parasite file              |   <--+
 |                              |      |
@@ -47,7 +43,7 @@ As a host:
 |                              |
 +------------------------------+
 |                              |
-|   Rest of PNG file           |   <-- Actual PNG data.
+|   Rest of PNG file           |   <--- Actual PNG data.
 |                              |
 +------------------------------+
 
@@ -86,16 +82,18 @@ class File(file_format.FileFormat):
     def host_parasite(self, parasite):
         """Host some parasite data in the current file.
 
-        Parasites are hosted by inserting a comment right after the PNG IHDR
-        chunk.
+        Parasites are hosted by inserting a comment immediately before the PNG
+        IEND chunk.
 
         Args:
             parasite (bytes): the parasite file to host within the current file.
         """
+        comment_location = -12
+
         polyglot = b""
 
         # Magic bytes and IHDR chunk of host PNG file.
-        polyglot += self.data[:33]
+        polyglot += self.data[:comment_location]
 
         # Parasite size.
         polyglot += (len(parasite)).to_bytes(4, "big")
@@ -110,6 +108,6 @@ class File(file_format.FileFormat):
         polyglot += binascii.crc32(b"cOMM" + parasite).to_bytes(4, "big")
 
         # Rest of host data.
-        polyglot += self.data[33:]
+        polyglot += self.data[comment_location:]
 
         return polyglot

@@ -8,7 +8,7 @@ As a stack:
 
 +-----------------+
 |                 |
-|   GIF file      |   <-- Prepended to the start of the bottom file.
+|   GIF file      |   <--- Prepended to the start of the bottom file.
 |                 |
 +-----------------+
 |                 |

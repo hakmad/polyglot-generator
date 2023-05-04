@@ -11,7 +11,7 @@ As a stack:
 
 +-----------------+
 |                 |
-|   JPEG file     |   <-- Prepended to the top of the bottom file.
+|   JPEG file     |   <--- Prepended to the top of the bottom file.
 |                 |
 +-----------------+
 |                 |
@@ -23,15 +23,15 @@ As a host:
 
 +-----------------------------+
 |                             |
-|   JPEG SOI (FF D8)          |   <--+
+|   Start of JPEG file        |   <--- Actual JPEG data.
+|                             |
++-----------------------------+
+|                             |
+|   JPEG comment (FF FE)      |   <--+
 |                             |      |
 +-----------------------------+      |
 |                             |      |
-|   JPEG comment (FF FE)      |   <--+
-|                             |      |
-+-----------------------------+      |-- JPEG header section.
-|                             |      |
-|   Parasite size (2 bytes)   |   <--+
+|   Parasite size (2 bytes)   |   <--+-- JPEG comment segment containing parasite.
 |                             |      |
 +-----------------------------+      |
 |                             |      |
@@ -76,16 +76,18 @@ class File(file_format.FileFormat):
     def host_parasite(self, parasite):
         """Host some parasite data in the current file.
 
-        Parasites are hosted by inserting a comment right after the JPEG SOI
-        marker.
+        Parasites are hosted by inserting a comment immediately before the JPEG
+        EOI segment, which is the last two bytes in the file.
 
         Args:
             parasite (bytes): the parasite file to host within the current file.
         """
+        comment_location = -2
+
         polyglot = b""
 
         # Magic bytes of host JPEG file.
-        polyglot += self.data[:2]
+        polyglot += self.data[:comment_location]
 
         # JPEG comment marker with parasite length.
         polyglot += b"\xFF\xFE"
@@ -95,6 +97,6 @@ class File(file_format.FileFormat):
         polyglot += parasite 
 
         # Rest of host data.
-        polyglot += self.data[2:]
+        polyglot += self.data[comment_location:]
 
         return polyglot
